@@ -1,0 +1,33 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+html,
+body {
+  box-sizing: border-box;
+  height: 100%;
+  margin: 0;
+}
+.mat-toolbar.mat-primary {
+  background: #0b6fd3 !important;
+  color: #fff;
+}
+.mat-card {
+  background: #6a7ca72e;
+  color: #fff;
+  margin: 4%;
+}
+.mat-card:hover {
+  box-shadow: 1px 2px 2px 2px #285f8624;
+}
+
+.load-spinner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 56px;
+  right: 0;
+  background: rgba(0, 0, 0, 0.15);
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

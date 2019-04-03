@@ -1,0 +1,94 @@
+<!-- Form Group to get employee Details -->
+<form [formGroup]="profileForm" (ngSubmit)="addEmployee()">
+  <div
+    class="container"
+    fxLayout
+    fxLayout="column"
+    fxLayoutAlign="center"
+    fxLayoutGap="10px"
+    fxLayoutGap="0"
+    fxFlexFill
+  >
+    <div class="item flex-rows" fxLayout="row" fxFlex="30%">
+      <div fxFlex="30%" fxFlexFill>
+        <mat-form-field [floatLabel]="auto">
+          <input
+            matInput
+            placeholder="First Name"
+            required
+            formControlName="firstName"
+          />
+        </mat-form-field>
+      </div>
+      <div fxFlex="30%" fxFlexFill>
+        <mat-form-field [floatLabel]="auto">
+          <input
+            matInput
+            placeholder="Last Name"
+            required
+            formControlName="lastName"
+          />
+        </mat-form-field>
+      </div>
+      <div fxFlex="30%" fxFlexFill>
+        <mat-form-field [floatLabel]="auto">
+          <input
+            type="email"
+            matInput
+            placeholder="Email"
+            required
+            formControlName="email"
+            pattern=".+@+.+"
+          />
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="item flex-rows" fxLayout="row" fxFlex="30%">
+      <div fxFlex="30%" fxFlexFill>
+        <mat-form-field [floatLabel]="auto">
+          <input
+            type="number"
+            matInput
+            placeholder="Contact Number"
+            required
+            formControlName="contactNumber"
+          />
+        </mat-form-field>
+      </div>
+      <div fxFlex="30%" fxFlexFill>
+        <mat-form-field>
+          <mat-label> Department</mat-label>
+          <mat-select formControlName="department" required>
+            <mat-option
+              *ngFor="let department of departmentList"
+              [value]="department.name"
+            >
+              {{ department.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div fxFlex="30%" fxFlexFill>
+        <button
+          mat-raised-button
+          color="primary"
+          [disabled]="!profileForm.valid"
+          type="submit"
+        >
+          Submit
+        </button>
+      </div>
+    </div>
+  </div>
+</form>
+
+<!-- Loader used when a HTTP post request is made -->
+<div *ngIf="showSpinner" class="load-spinner">
+  <mat-progress-spinner
+    class="example-margin"
+    [color]="primary"
+    [mode]="indeterminate"
+    [value]="50"
+  >
+  </mat-progress-spinner>
+</div>
