@@ -16,11 +16,21 @@ const httpOptions = {
 })
 export class EmployeeService {
   constructor(private http: HttpClient) {}
-  save(employeeDetails: Employee): Observable<any> {
-    return this.http.post(Constants.addEmployee, employeeDetails, httpOptions);
+  employeeList = [];
+  count = 0;
+  save(employeeDetails: Employee): any {
+    employeeDetails["id"] = this.count;
+    this.count += 1;
+    this.employeeList.push(employeeDetails);
+    // return this.http.post(Constants.addEmployee, employeeDetails, httpOptions);
   }
 
-  get(): Observable<Employee[]> {
-    return this.http.get<Employee[]>(Constants.getEmployeeList, httpOptions);
+  get(): Employee[] {
+    return this.employeeList;
+    // return this.http.get<Employee[]>(Constants.getEmployeeList, httpOptions);
+  }
+
+  getEmployeeDetail(id) {
+    return this.employeeList.filter(d => d.id == parseInt(id));
   }
 }

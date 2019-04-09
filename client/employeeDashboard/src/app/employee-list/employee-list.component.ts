@@ -4,7 +4,7 @@ import { MatPaginator, MatSort, MatTableDataSource } from "@angular/material";
 import { Employee } from "../Employee";
 import { DialogComponent } from "../dialog/dialog.component";
 import { MatDialog } from "@angular/material";
-
+import { Router } from "@angular/router";
 @Component({
   selector: "app-employee-list",
   templateUrl: "./employee-list.component.html",
@@ -18,7 +18,7 @@ export class EmployeeListComponent implements OnInit {
     "contactNumber",
     "department"
   ];
-  showSpinner = true;
+  //showSpinner = true;
   resultsLength = 0;
   isLoadingResults = true;
   dataSource: MatTableDataSource<Employee>;
@@ -27,28 +27,35 @@ export class EmployeeListComponent implements OnInit {
 
   constructor(
     private employeeService: EmployeeService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private router: Router
   ) {
-    this.showSpinner = true;
-    this.employeeService.get().subscribe(
-      data => {
-        this.dataSource = new MatTableDataSource(data);
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
-        this.showSpinner = false;
-      },
-      error => {
-        this.showSpinner = false;
-        this.dialog.open(DialogComponent, {
-          width: "40%",
-          data: { msg: "Error occured while fetching employee details !!" }
-        });
-      }
-    );
+    //this.showSpinner = true;
+    //this.dataSource = new MatTableDataSource(this.employeeService.get());
+    // this.employeeService.get().subscribe(
+    //   data => {
+    //     this.dataSource = new MatTableDataSource(data);
+    //     this.dataSource.paginator = this.paginator;
+    //     this.dataSource.sort = this.sort;
+    //     this.showSpinner = false;
+    //   },
+    //   error => {
+    //     this.showSpinner = false;
+    //     this.dialog.open(DialogComponent, {
+    //       width: "40%",
+    //       data: { msg: "Error occured while fetching employee details !!" }
+    //     });
+    //   }
+    // );
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.dataSource = new MatTableDataSource(this.employeeService.get());
+  }
 
+  onEmployeeSelected(employee) {
+    this.router.navigate(["employeeDetail", employee.id]);
+  }
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
 

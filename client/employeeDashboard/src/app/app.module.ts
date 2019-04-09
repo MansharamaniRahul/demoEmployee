@@ -14,13 +14,17 @@ import { HttpClientModule } from "@angular/common/http";
 import { EmployeeListComponent } from "./employee-list/employee-list.component";
 import { AddEmployeeComponent } from "./add-employee/add-employee.component";
 import { DialogComponent } from "./dialog/dialog.component";
+import { EmployeeDetaiComponent } from './employee-detai/employee-detai.component';
+import { EmployeeDetailChildComponent } from './employee-detail-child/employee-detail-child.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     EmployeeListComponent,
     AddEmployeeComponent,
-    DialogComponent
+    DialogComponent,
+    EmployeeDetaiComponent,
+    EmployeeDetailChildComponent
   ],
   imports: [
     BrowserModule,

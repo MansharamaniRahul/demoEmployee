@@ -1,0 +1,4 @@
+<p *ngIf="employee">{{ employee.firstName }} &nbsp; selected !!</p>
+<app-employee-detail-child
+  [lastName]="employee.lastName"
+></app-employee-detail-child>

@@ -32,23 +32,24 @@ export class AddEmployeeComponent implements OnInit {
 
   //Method to addd employee details to the DB.
   addEmployee = () => {
-    this.showSpinner = true;
-    this.employeeService.save(this.profileForm.value).subscribe(
-      data => {
-        this.showSpinner = false;
-        this.dialog.open(DialogComponent, {
-          width: "40%",
-          data: { msg: "Employee Details Saved Successfully !!" }
-        });
-      },
-      errot => {
-        this.showSpinner = false;
-        this.dialog.open(DialogComponent, {
-          width: "40%",
-          data: { msg: "Error occured while adding employee details !!" }
-        });
-      }
-    );
+    // this.showSpinner = true;
+    this.employeeService.save(this.profileForm.value);
+    // .subscribe(
+    //   data => {
+    //     this.showSpinner = false;
+    //     this.dialog.open(DialogComponent, {
+    //       width: "40%",
+    //       data: { msg: "Employee Details Saved Successfully !!" }
+    //     });
+    //   },
+    //   errot => {
+    //     this.showSpinner = false;
+    //     this.dialog.open(DialogComponent, {
+    //       width: "40%",
+    //       data: { msg: "Error occured while adding employee details !!" }
+    //     });
+    //   }
+    // );
   };
   constructor(
     private employeeService: EmployeeService,
